@@ -12,6 +12,18 @@ const createRouter = function (collection) {
       .then((docs) => res.json(docs));
   });
 
+  router.post('/', (req, res) => {
+    const newData = req.body;
+    collection
+      .insertOne(newData)
+      .then(() => {
+        collection
+          .find()
+          .toArray()
+          .then((docs) => res.json(docs));
+      })
+  });
+
   return router;
 };
 
