@@ -17,8 +17,24 @@ TodoListView.prototype.render = function (data) {
     const newElement = document.createElement('p');
     newElement.textContent = title;
     this.container.appendChild(newElement);
-  });
 
+    const deleteButton = this.createDeleteButton(todoItem._id);
+    this.container.appendChild(deleteButton);
+
+
+  });
+};
+
+TodoListView.prototype.createDeleteButton = function (todoItemId) {
+  const button = document.createElement('button');
+  button.classList.add('delete-btn');
+  button.value = todoItemId;
+
+  button.addEventListener('click', (event) => {
+    PubSub.publish('TodoListView:item-delete-clicked', event.target.value);
+    console.log(button);
+  });
+  return button;
 };
 
 module.exports = TodoListView;
