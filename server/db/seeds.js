@@ -1,8 +1,8 @@
 use todo_hub;
 db.dropDatabase();
 
-db.list.insertMany()([
+db.list.insertMany([
   {
     title: "Stuff"
   }
-])
+]);
