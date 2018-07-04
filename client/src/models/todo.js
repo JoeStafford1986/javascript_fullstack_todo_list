@@ -9,13 +9,17 @@ Todo.prototype.bindEvents = function () {
   PubSub.subscribe('TodoFormView:todo-submitted', (event) =>{
     this.postData(event.detail);
   });
+  PubSub.subscribe('TodoListView:delete-clicked', (event) =>{
+    this.deleteItem(event.detail);
+  });
+
 };
 
 Todo.prototype.postData = function (data) {
   const request = new Request(this.url);
   request.post(data)
-    .then((allData) => {
-      PubSub.publish('Todo:data-loaded', allData);
+    .then((todos) => {
+      PubSub.publish('Todo:data-loaded', todos);
     })
     .catch(console.error);
 };
@@ -25,6 +29,15 @@ Todo.prototype.getData = function () {
   request.get()
     .then((todos) => {
       console.log(todos);
+      PubSub.publish('Todo:data-loaded', todos);
+    })
+    .catch(console.error);
+};
+
+Todo.prototype.deleteItem = function (itemId) {
+  const request = new Request(this.url);
+  request.delete(itemId)
+    .then((todos) => {
       PubSub.publish('Todo:data-loaded', todos);
     })
     .catch(console.error);

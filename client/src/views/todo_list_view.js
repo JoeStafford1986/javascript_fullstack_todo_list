@@ -19,7 +19,14 @@ TodoListView.prototype.render = function (data) {
     this.container.appendChild(newElement);
 
     const deleteButton = this.createDeleteButton(todoItem._id);
+    deleteButton.addEventListener('click', (event) =>{
+      const todoItemId = event.target.value;
+      PubSub.publish('TodoListView:delete-clicked', todoItemId);
+    });
+
     this.container.appendChild(deleteButton);
+
+
 
 
   });
