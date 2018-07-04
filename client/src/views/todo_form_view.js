@@ -14,7 +14,6 @@ TodoFormView.prototype.handleSubmit = function (event) {
   event.preventDefault();
   const newTodo = this.createTodo(event.target);
   PubSub.publish('TodoFormView:todo-submitted', newTodo);
-  console.log(newTodo);
   event.target.reset();
 };
 
