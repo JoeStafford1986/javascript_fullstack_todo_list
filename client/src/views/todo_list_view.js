@@ -25,10 +25,6 @@ TodoListView.prototype.render = function (data) {
     });
 
     this.container.appendChild(deleteButton);
-
-
-
-
   });
 };
 
@@ -39,7 +35,6 @@ TodoListView.prototype.createDeleteButton = function (todoItemId) {
 
   button.addEventListener('click', (event) => {
     PubSub.publish('TodoListView:item-delete-clicked', event.target.value);
-    console.log(button);
   });
   return button;
 };

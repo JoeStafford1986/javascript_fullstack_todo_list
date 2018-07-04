@@ -28,7 +28,6 @@ Todo.prototype.getData = function () {
   const request = new Request(this.url);
   request.get()
     .then((todos) => {
-      console.log(todos);
       PubSub.publish('Todo:data-loaded', todos);
     })
     .catch(console.error);
