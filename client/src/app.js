@@ -16,4 +16,5 @@ document.addEventListener('DOMContentLoaded', () => {
   const dataURL = 'http://localhost:3000/api/todo';
   const todo = new Todo(dataURL);
   todo.getData();
+  todo.bindEvents();
 });

@@ -11,12 +11,14 @@ TodoListView.prototype.bindEvents = function () {
 };
 
 TodoListView.prototype.render = function (data) {
+  this.container.innerHTML = " ";
   data.forEach((todoItem) => {
     const title = todoItem.title;
     const newElement = document.createElement('p');
     newElement.textContent = title;
     this.container.appendChild(newElement);
   });
+
 };
 
 module.exports = TodoListView;
